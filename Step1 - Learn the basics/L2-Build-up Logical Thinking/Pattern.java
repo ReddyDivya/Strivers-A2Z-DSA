@@ -1,6 +1,14 @@
 public class Pattern{
 
-    //Pattern 1
+    /*
+    Pattern 1
+    ---------
+        * * * * * 
+        * * * * * 
+        * * * * * 
+        * * * * *
+        * * * * *
+    */
     static void pattern1(int n)
     {
         // This is the outer loop which will loop for the rows.
@@ -23,7 +31,14 @@ public class Pattern{
         }
     }
 
-    //Pattern 2
+    /*
+    Pattern 2
+    ---------
+        *
+        * *
+        * * *
+        * * * *
+    */
     static void pattern2(int n){
         for(int i=0; i<n; i++)
         {
@@ -39,6 +54,14 @@ public class Pattern{
         }
     }
 
+    /*
+    Pattern 3
+    ---------
+    1       
+    1 2     
+    1 2 3   
+    1 2 3 4
+    */
     static void pattern3(int n)
     {
         for(int i=0; i<n; i++)
@@ -51,6 +74,15 @@ public class Pattern{
         }
     }
 
+    /*
+    Pattern 4
+    ---------
+    1
+    2 2
+    3 3 3
+    4 4 4 4
+    5 5 5 5 5
+    */
     static void pattern4(int n)
     {
         for(int i=0; i<n; i++)
@@ -68,6 +100,15 @@ public class Pattern{
         }
     }
 
+    /*
+    Pattern 5
+    ---------
+        * * * * * 
+        * * * * 
+        * * * 
+        * *
+        * 
+    */
     static void pattern5(int n)
     {
         for(int i=0; i<n; i++)
@@ -84,6 +125,15 @@ public class Pattern{
         }
     }
 
+    /*
+    Pattern 6
+    ---------
+       1 2 3 4 5
+       1 2 3 4
+       1 2 3
+       1 2
+       1
+    */
     static void pattern6(int n)
     {
         for(int i=0; i<n; i++)
@@ -102,6 +152,15 @@ public class Pattern{
         }
     }
 
+    /*
+    Pattern 7
+    ---------
+         *
+        ***
+       *****
+      *******
+     *********
+    */
     static void pattern7(int n)
     {
         // This is the outer loop which will loop for the rows.
@@ -128,6 +187,15 @@ public class Pattern{
         }
     }
 
+    /*
+    Pattern 8
+    ---------
+     *********
+      *******
+       *****
+        ***
+         *
+    */
     static void pattern8(int n)
     {
         // This is the outer loop which will loop for the rows.
@@ -154,6 +222,20 @@ public class Pattern{
         }
     }
 
+    /*
+    Pattern 9
+    ---------
+         *
+        ***
+       *****
+      *******
+     *********
+     *********
+      *******
+       *****
+        ***
+         *
+    */
     static void pattern9(int n)
     {
         pattern7(5);
