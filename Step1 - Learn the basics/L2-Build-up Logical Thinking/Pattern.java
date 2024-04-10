@@ -242,6 +242,41 @@ public class Pattern{
         pattern8(5);
     }
 
+    /*
+    Pattern 10
+    ---------
+        *
+        **
+        ****
+        *****
+        ******
+        *****
+        ****
+        ***
+        **
+        *
+    */
+    static void pattern10(int n)
+    {
+        //Step1: Outer loop for number of rows.
+        for(int i=1; i<=2*n-1; i++ )
+        {
+            // stars would be equal to the row no. uptill first half
+            int stars = i;
+
+            // for the second half of the rotated triangle.
+            if(i>n) 
+                stars = 2*n - i;
+
+            //for printing the stars for each row
+            for(int j=1; j<=stars; j++)
+            {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+    }
+
     public static void main(String[] args)
     {
         pattern1(5);
@@ -261,5 +296,7 @@ public class Pattern{
         pattern8(5);
         System.out.println();
         pattern9(5);
+        System.out.println();
+        pattern10(5);
     }
 }
