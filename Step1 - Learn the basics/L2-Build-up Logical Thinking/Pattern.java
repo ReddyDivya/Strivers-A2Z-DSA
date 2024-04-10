@@ -258,14 +258,15 @@ public class Pattern{
     */
     static void pattern10(int n)
     {
-        //Step1: Outer loop for number of rows.
-        for(int i=1; i<=2*n-1; i++ )
+        //case: n=5
+        //Outer loop for number of rows.
+        for(int i=1; i<=2*n-1; i++ )//9 rows
         {
-            // stars would be equal to the row no. uptill first half
+            //stars would be equal to the row no. uptill first half
             int stars = i;
 
             // for the second half of the rotated triangle.
-            if(i>n) 
+            if(i>n)
                 stars = 2*n - i;
 
             //for printing the stars for each row
@@ -274,6 +275,78 @@ public class Pattern{
                 System.out.print("* ");
             }
             System.out.println();
+        }
+    }
+
+    /*
+    Pattern 11
+    ---------
+        1
+        0 1
+        1 0 1
+        0 1 0 1
+        1 0 1 0 1
+    */
+    static void pattern11(int n)
+    {
+        // First row starts by printing a single 1.
+        int start = 1;
+
+        // Outer loop for the no. of rows
+        for(int i=0; i<n; i++ )
+        {
+            //if the row index is even then 1 is printed first in that row.            
+          if(i%2 == 0)
+                start = 1;
+            else // if odd, then the first 0 will be printed in that row.
+                start = 0;
+
+            // We alternatively print 1's and 0's in each row by using the inner for loop.
+            for(int j=0; j<=i; j++)
+            {
+                System.out.print(start+" ");
+                start = 1-start;//flipping start values 0->1, 1->0
+            }
+            System.out.println();
+        }
+    }
+
+    /*
+    Pattern 11
+    ---------
+        1             1
+        1 2         2 1
+        1 2 3     3 2 1
+        1 2 3 4 4 3 2 1
+    */
+    static void pattern12(int n)
+    {   
+        int spaces = 2*(n-1);//initial no. of spaces in row 1.
+        
+        // Outer loop for the number of rows.
+        for(int i=1; i<=n; i++)
+        {
+            // for printing numbers in each row
+            for(int j=1; j<=i; j++)
+            {
+                System.out.print(j);
+            }
+
+            //for printing spaces in each row
+            for(int j=1; j<=spaces; j++)
+            {
+                System.out.print(" ");
+            }
+
+            // for printing spaces in each row
+            for(int j=i; j>=1; j--)
+            {
+                System.out.print(j);
+            }
+            System.out.println();
+
+            //After each iteration nos. increase by 2, thus spaces will decrement by 2.
+            spaces = spaces-2;
         }
     }
 
@@ -298,5 +371,9 @@ public class Pattern{
         pattern9(5);
         System.out.println();
         pattern10(5);
+        System.out.println();
+        pattern11(5);
+        System.out.println();
+        pattern12(5);
     }
 }
