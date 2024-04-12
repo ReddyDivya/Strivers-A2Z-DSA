@@ -23,7 +23,7 @@ public class CheckPalindrome{
         n = 11;
         System.out.println(check_palindrome(n));
 
-        n = 321;
+        n = 123;
         System.out.println(check_palindrome(n));
     }
 }
