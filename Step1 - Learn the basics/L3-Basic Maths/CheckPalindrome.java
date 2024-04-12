@@ -1,5 +1,5 @@
 public class CheckPalindrome{
-    static void check_palindrome(int n)
+    static boolean check_palindrome(int n)
     {
         int reverseNum = 0;
         int lastDgit = 0;
@@ -12,21 +12,18 @@ public class CheckPalindrome{
             n = n/10;
         }
 
-        if(duplicate == reverseNum)
-            System.out.println(duplicate+" is a Palindrome Number.");
-        else
-            System.out.println(duplicate+" is not a Palindrome Number.");
+        return duplicate == reverseNum;
     }
 
     public static void main(String[] arg)
     {
         int n = 1331;
-        check_palindrome(n);
+        System.out.println(check_palindrome(n));
 
         n = 11;
-        check_palindrome(n);
+        System.out.println(check_palindrome(n));
 
         n = 321;
-        check_palindrome(n);
+        System.out.println(check_palindrome(n));
     }
 }
