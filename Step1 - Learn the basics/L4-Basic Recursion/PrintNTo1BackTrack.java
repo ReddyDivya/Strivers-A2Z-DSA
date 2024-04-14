@@ -7,11 +7,11 @@ public class PrintNTo1BackTrack{
         if(i < 1) 
             return;
 
+        // Print the current number i
+        System.out.println(i); // 4 3 2 1
+
         // Recursively call printNTo1BackTrack with i decremented until i reaches 1
         printNTo1BackTrack(i-1, n);
-        
-        // Print the current number i
-        System.out.println(i); // 1 2 3 4
     }
 
     // Main method
@@ -24,3 +24,4 @@ public class PrintNTo1BackTrack{
         printNTo1BackTrack(n, n);
     }
 }
+                              
