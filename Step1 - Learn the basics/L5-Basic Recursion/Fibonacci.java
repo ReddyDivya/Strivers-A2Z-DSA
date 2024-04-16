@@ -5,6 +5,7 @@ public class Fibonacci {
         // Base cases: Fibonacci of 0 is 0, Fibonacci of 1 is 1
         if (n == 0)
             return 0;
+
         if (n <= 1)
             return n;
         
