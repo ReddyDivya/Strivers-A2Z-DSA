@@ -34,7 +34,6 @@ public class BubbleSort {
         Iterate through the array from last index to the first. 
         Each pass bubbles up the largest element to its correct position at the end of the array.
         */
-        
         for (int i = n - 1; i >= 0; i--) {
 
             // If no swap occurs, array is already sorted, so exit loop

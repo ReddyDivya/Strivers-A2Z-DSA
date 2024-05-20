@@ -3,6 +3,8 @@ public class RecursiveBubbleSort {
         // Base case: if the range to be sorted is 1, return (array is already sorted)
         if (n == 1) return;
 
+        int didSwap = 0;
+
         // Perform one pass of the bubble sort
         for (int j = 0; j <= n - 2; j++) {
             // Swap if the current element is greater than the next element
@@ -10,8 +12,13 @@ public class RecursiveBubbleSort {
                 int temp = arr[j];
                 arr[j] = arr[j + 1];
                 arr[j + 1] = temp;
+                didSwap = 1;
             }
         }
+
+        // if no swapping happens.
+        if(didSwap == 0)
+            return;
 
         // Recursively call bubbleSort with the range reduced by one
         // This ensures that the next largest element will be placed in its correct position
