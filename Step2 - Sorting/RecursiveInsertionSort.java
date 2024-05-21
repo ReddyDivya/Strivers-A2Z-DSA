@@ -57,7 +57,7 @@ public class RecursiveInsertionSort {
         }
         System.out.println();
 
-        // Close the scanner to free up resources
+        // Close the scan ner to free up resources
         sc.close();
     }
 }
