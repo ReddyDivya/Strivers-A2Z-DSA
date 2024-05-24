@@ -1,3 +1,4 @@
+//5. Left Rotate the Array by One
 public class LeftRotateByOnePlace {
 
     // Brute-force approach to left rotate an array by one place

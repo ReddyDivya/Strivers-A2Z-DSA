@@ -1,4 +1,6 @@
-public class LeftRotateByDPlace{
+//6. Rotate array by K elements
+//Left Rotate By D Place
+public class LeftRotateByDElements{
 
     //Bruteforce approach
 
@@ -9,6 +11,6 @@ public class LeftRotateByDPlace{
         int n=5;
         int arr[] = {1, 2, 3, 4, 5};
 
-        
+
     }
 }
