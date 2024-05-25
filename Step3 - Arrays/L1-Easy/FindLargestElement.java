@@ -1,8 +1,35 @@
+/*
+1. Find the Largest element in an array
+
+# Approach 1: - Brute Force
+Step1: Sort the array in ascending order.
+Step2: Print the (size of the array -1)th index.
+
+# Approach 2: - Recursive Approach(Using a max variable)
+Step1: Create a max variable and initialize it with arr[0].
+Step2: Use a for loop and compare it with other elements of the array
+Step3: If any element is greater than the max value, update max value with the element’s value
+Step4: Print the max variable.
+*/
 import java.util.*;
 
 public class FindLargestElement{
-    // This method finds the largest element in an integer array.
-    static int findLargestElement(int[] arr){
+
+    //Approach 1: Brute Force
+    static int findLargestElementBF(int[] arr){
+
+        // Check if the array is empty
+        if(arr.length == 0)
+            return Integer.MIN_VALUE;//return a default value
+        
+        Arrays.sort(arr);
+
+      // Return the largest element which is the last element after sorting
+        return arr[arr.length - 1];
+    }//findLargestElementBF
+
+    //Optimal Approach 2: - Recursive Approach(Using a max variable)
+    static int findLargestElementOptimal(int[] arr){
         
         // Initialize max to the first element of the array
         int max = arr[0];
@@ -17,42 +44,29 @@ public class FindLargestElement{
 
         // Return the largest element found
         return max;
-    }
+    }//findLargestElementOptimal
 
     public static void main(String[] args){
-        // Create a Scanner object to read input from the user
-        Scanner sc = new Scanner(System.in);
-
-        // Prompt the user to enter the size of the array
-        System.out.println("Enter the size of the array: ");
-        int n = sc.nextInt();  // Read the size of the array
-
-        // Declare an array of the given size
-        int[] arr = new int[n];
-
-        // Prompt the user to enter the elements of the array
-        System.out.println("Enter the elements of the array: ");
-        for(int i = 0; i < n; i++){
-            arr[i] = sc.nextInt();  // Read each element of the array
+        int arr[] =  {2,5,1,3,0};
+        
+        //Before the largest element in the array
+        System.out.println("Before the largest element in the array: ");
+        for(int i = 0; i < arr.length; i++){
+            System.out.print(arr[i]+ " ");
         }
+        System.out.println();
 
-        // Call the method to find the largest element and print the result
-        System.out.println("The largest element in the array is: " + findLargestElement(arr));
+        System.out.println("The Largest element in the array is(Brute Force): " + findLargestElementBF(arr));
+    
+        System.out.println("The Largest element in the array is(Optimal): " + findLargestElementOptimal(arr));
     }
 }
 
 /*
 Output:
 
-Enter the size of the array: 
-7
-Enter the elements of the array: 
-8
-333
-4
-555
-32
-11
-111
-The largest element in the array is: 555
+Before the largest element in the array: 
+2 5 1 3 0
+The Largest element in the array is(Brute Force): 5
+The Largest element in the array is(Optimal): 5 
 */
