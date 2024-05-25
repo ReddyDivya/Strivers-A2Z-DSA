@@ -94,7 +94,7 @@ public class FindSecondSmallestElement{
             else if(arr[i] < second_small && arr[i] != small){
                 second_small = arr[i];
             }
-        }
+        }//for
 
         // Print the results for the second smallest element.
         System.out.println("The second smallest element in the array is(Optimal): " + second_small);
