@@ -7,7 +7,12 @@ Step1: Sort the array in ascending order
 Step2: The element present at the second index is the second smallest element
 Step3: The element present at the second index from the end is the second largest element
 
-# Approach 2: - Recursive Approach(Using a max variable)
+# Approach 2: - Better approach
+Step1: Find the largest element in the array in a single traversal
+Step2: We once again traverse the array and find an element that is just greater than the smallest element we just found.
+Step3: We would find the largest element which is just smaller than the largest element we just found
+
+# Approach 3: - Recursive Approach(Using a max variable)
 Step1: If the current element is larger than ‘large’ then update second_large and large variables
 Step2: Else if the current element is larger than ‘second_large’ then we update the variable second_large.
 Step3: Once we traverse the entire array, we would find the second largest element in the variable second_large.
@@ -123,6 +128,6 @@ Output:
 Given Array: 
 1 2 4 6 7 5
 The second largest element in the array is(Brute Force): 6
-The second largest element in the array is(Better): 6
+The second largest element in the array is(Better): 6    
 The second largest element in the array is(Optimal): 6
 */
