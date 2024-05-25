@@ -1,6 +1,6 @@
 /*
 - 6. Rotate array by K elements
-- Left Rotate By D PlaEce
+- Left Rotate By D Place
 
 # Approach 1- Brute Force approach for Rotating the Elements to the left
 Step-1: Copy the first k elements into the temp array.
