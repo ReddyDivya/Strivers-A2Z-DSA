@@ -7,7 +7,11 @@ Step1: Sort the array in ascending order
 Step2: The element present at the second index is the second smallest element
 Step3: The element present at the second index from the end is the second largest element
 
-# Approach 2: - Recursive Approach(Using a max variable)
+# Approach 2: - Better
+Step1: Find the smallest element in the array in a single traversal
+Step2: We once again traverse the array and find an element that is just greater than the smallest element we just found.
+
+# Approach 3: - Recursive Approach(Using a max variable)
 Step1: If the current element is smaller than ‘small’, then we update second_small and small variables
 Step2: Else if the current element is smaller than ‘second_small’ then we update the variable ‘second_small’
 Step3: Once we traverse the entire array, we would find the second smallest element in the variable second_small.

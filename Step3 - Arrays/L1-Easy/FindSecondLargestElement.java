@@ -74,5 +74,7 @@ Output:
 
 Given Array: 
 1 2 4 6 7 5
+The second largest element in the array is(Brute Force): 6
+The second largest element in the array is(Better): 6
 The second largest element in the array is(Optimal): 6
 */
