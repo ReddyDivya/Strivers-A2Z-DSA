@@ -1,4 +1,6 @@
 /*
+4. Remove Duplicates in-place from Sorted Array
+
 # Approach 1: Brute Force
 
 Step1: Declare a HashSet.
@@ -7,8 +9,7 @@ Step3: Put every element of the array in the set.
 Step4: Store size of the set in a variable K.
 Step5: Now put all elements of the set in the array from the starting of the array.
 Step6: Return K.
-
-
+--------------------------------------------
 # Approach 2: Optimal - Two pointers
 
 Step1: Take a variable i as 0;

@@ -1,4 +1,7 @@
 /*
+- 6. Rotate array by K elements
+- Right Rotate By D Place
+
 # Approach 1- Brute Force approach for Rotating the Elements to the right
 Step-1: Copy the last k elements into the temp array.
 Step-2: Shift n-k elements from the beginning by k positions to the right.

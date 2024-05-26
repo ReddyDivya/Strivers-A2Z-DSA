@@ -1,7 +1,20 @@
-//5. Left Rotate the Array by One
+/*
+5. Left Rotate the Array by One
+
+# Approach 1: Brute Force
+- We can take another dummy array of the same length and then shift all elements in the array toward the left and then at the last element store the index of 0th index of the array and print it
+
+------------------------------------------------
+# Approach 2: Optimal
+Step1: We have to shift the array towards the left so, we store the value of the first index in a variable (let it be x).
+Step2: Then we iterate the array from the 0th index to the n-1th index(why n-1 i will explain it below)
+Step3: Then, store the value present in the next index to the current index like this. arr[i] = arr[i+1]
+Step4: To prevent its segmentation fault we will iterate it till n-1.
+Step5: At last, put the value of variable x in the last index of the array.
+*/
 public class LeftRotateByOnePlace {
 
-    // Brute-force approach to left rotate an array by one place
+    // Approach 1: Brute Force
     static private void leftRotateByOnePlaceBF(int[] arr, int n) {
         // Create a temporary array to store the rotated elements
         int[] temp = new int[n];
@@ -22,7 +35,7 @@ public class LeftRotateByOnePlace {
         System.out.println();
     }//leftRotateByOnePlaceBF
 
-    //Optimal approach to left rotate an array by one place
+    //Approach 2: Optimal approach
    static private void leftRotateByOnePlaceOptimal(int[] arr, int n) {
         // Store the first element of the array in a temporary variable
         int temp = arr[0];
