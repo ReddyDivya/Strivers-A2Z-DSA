@@ -107,7 +107,7 @@ public class RightRotateByDElements {
         int arr2[] = {1, 2, 3, 4, 5, 6, 7};
         int k = 2;
 
-        // Print the array after rotating to the right
+        // Print the array before rotating to the right
         System.out.println("Before Rotating the elements to right: ");
         for (int i = 0; i < n; i++) {
             System.out.print(arr[i] + " ");
