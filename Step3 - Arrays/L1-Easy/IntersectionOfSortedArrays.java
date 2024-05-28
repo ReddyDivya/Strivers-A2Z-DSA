@@ -1,6 +1,25 @@
 /*
 Intersection Of Sorted Arrays
 
+    # Approach 1: Brute Force
+    * 1. Create an empty list to store the intersection.
+    * 2. Iterate through each element in the first array.
+    * 3. For each element in the first array, iterate through each element in the second array.
+    * 4. If a common element is found, check if it is already in the intersection list.
+    * 5. If not, add the common element to the intersection list.
+    * 6. Return the intersection list.
+     
+    # Approach 2: Optimal Two-Pointer Approach
+    * 1. Initialize two pointers, one for each array.
+    * 2. Create an empty list to store the intersection.
+    * 3. Traverse both arrays using the pointers.
+    * 4. If the elements at both pointers are equal, add the element to the intersection list (if it's not a duplicate).
+    * 5. Move both pointers forward.
+    * 6. If the element in the first array is smaller, move the pointer in the first array forward.
+    * 7. If the element in the second array is smaller, move the pointer in the second array forward.
+    * 8. Continue until one of the pointers reaches the end of its array.
+    * 9. Return the intersection list.
+
 */
 import java.util.ArrayList;
 
