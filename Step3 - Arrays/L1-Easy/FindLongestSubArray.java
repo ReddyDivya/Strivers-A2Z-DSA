@@ -103,6 +103,44 @@ public class FindLongestSubArray{
         // Overall space complexity: O(n)
     } // findLongestSubArrayBetter
 
+    // Approach 4: Better using Two Pointers
+    static int findLongestSubArrayOptimal(int[] arr, int n, int K) {
+        // Step 1: Initialize variables
+        int maxLen = 0; // to store the maximum length of subarray
+        int left = 0, right = 0; // two pointers for the sliding window
+        long sum = arr[0]; // initialize sum with the first element
+        // Space Complexity: O(1) for these variables
+
+        // Step 2: Traverse the array with the right pointer
+        // Time Complexity: O(n)
+        while (right < n) {
+            // Step 3: Reduce sum from the left if it exceeds K
+            // Time Complexity: O(n) in the worst case (when reducing multiple times)
+            while (left <= right && sum > K) {
+                sum -= arr[left]; // reduce sum by the left element
+                left++; // move the left pointer to the right
+            }
+
+            // Step 4: If sum equals K, update maxLen
+            // Time Complexity: O(1)
+            if (sum == K) {
+                maxLen = Math.max(maxLen, right - left + 1);
+            }
+
+            // Step 5: Move the right pointer forward
+            right++; // increment the right pointer
+            // Time Complexity: O(1)
+            if (right < n) {
+                sum += arr[right]; // add the new element to the sum
+                // Time Complexity: O(1)
+            }
+        }
+
+        // Step 6: Return the length of the longest subarray
+        // Time Complexity: O(1)
+        return maxLen;
+    }//findLongestSubArrayOptimal
+
     public static void main(String[] args){
         int[] arr = {2, 3, 5, 1, 9};
         int K=10;
@@ -114,5 +152,8 @@ public class FindLongestSubArray{
 
         int lenBetter = findLongestSubArrayBetter(arr, arr.length, K);
         System.out.println("The Longest Subarray(Better): "+ lenBetter);//3
+
+        int lenOptimal = findLongestSubArrayOptimal(arr, arr.length, K);
+        System.out.println("The Longest Subarray(Optimal): "+ lenOptimal);//3
     }
 }
