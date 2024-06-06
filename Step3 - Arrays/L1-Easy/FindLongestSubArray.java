@@ -142,8 +142,11 @@ public class FindLongestSubArray{
     }//findLongestSubArrayOptimal
 
     public static void main(String[] args){
-        int[] arr = {2, 3, 5, 1, 9};
-        int K=10;
+        // int[] arr = {2, 3, 5, 1, 9};
+        // int K=10;
+        int[] arr = { -1, 1, 1};
+        int K = 1;
+        
         int lenBF = findLongestSubArrayBF(arr, arr.length, K);
         System.out.println("The Longest Subarray(Brute Force): "+ lenBF);//3
 
