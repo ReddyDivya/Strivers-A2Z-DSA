@@ -108,7 +108,6 @@ public class TwoSum {
         return "NO";
     } // twoSumOptimalV1
 
-
     // Approach 3: Optimal using 2 Pointers (variant 2)
     public static int[] twoSumOptimalV2(int[] arr, int n, int target){
         int left = 0, right = n-1;
