@@ -36,10 +36,10 @@ public class CountDigits {
     {
         // Test cases to count the number of digits
         int n = 7789;
-        System.out.println("Number of digits in " + n + " is " + count_digits(n));
+        System.out.println("(Brute Force)Number of digits in " + n + " is " + count_digits(n));
 
         // Test the optimal approach
         n = 123489;
-        System.out.println("Number of digits in " + n + " is " + count_digits2(n));
+        System.out.println("(Optimal)Number of digits in " + n + " is " + count_digits2(n));
     }
 }

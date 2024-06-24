@@ -1,24 +1,23 @@
 public class ReverseNumber {
     // Method to reverse a given number
-    static int reverse_number(int n)
+    static int reverse_number(int x)
     {
-        // Initialize variables
-        int reverse = 0; // To store the reversed number
-        int lastDigit = 0; // To store the last digit of the number
+        int result = 0;  // Initialize the result to store the reversed number
 
-        // Loop until n becomes 0
-        while(n > 0)
-        {
-            // Extract the last digit of n
-            lastDigit = n % 10;
-            // Construct the reversed number
-            reverse = (reverse * 10) + lastDigit;
-            // Remove the last digit from n
-            n = n / 10;
+        // Loop to process each digit of the number
+        while (x != 0) {
+            int lastDigit = x % 10;  // Get the last digit
+
+            // Check for overflow/underflow before multiplying by 10
+            if (result > Integer.MAX_VALUE / 10 || result < Integer.MIN_VALUE / 10) {
+                return 0;  // Return 0 in case of overflow/underflow
+            }
+
+            result = result * 10 + lastDigit;  // Append the last digit to the result
+            x = x / 10;  // Remove the last digit from x
         }
 
-        // Return the reversed number
-        return reverse;
+        return result;  // Return the reversed number
     }
 
     public static void main(String[] arg)
@@ -28,7 +27,7 @@ public class ReverseNumber {
         // Print the original number and its reversed form
         System.out.println("The reverse of the " + n + " is " + reverse_number(n));
         
-        n = 12345678;
+        n = -123;
         // Print the original number and its reversed form
         System.out.println("The reverse of the " + n + " is " + reverse_number(n));
     }
