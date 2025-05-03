@@ -28,6 +28,8 @@ public class FindLargestElement {
         
         // The last element will be the largest
         System.out.println("Largest: " + arr[arr.length - 1]);
+
+        /* -------------------------------------------------------------------- */
         
         // Optimal approach using a max variable
         System.out.println("Optimal approach: ");
