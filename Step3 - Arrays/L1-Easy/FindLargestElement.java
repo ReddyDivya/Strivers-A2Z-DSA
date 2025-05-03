@@ -11,62 +11,47 @@ Step2: Use a for loop and compare it with other elements of the array
 Step3: If any element is greater than the max value, update max value with the element’s value
 Step4: Print the max variable.
 */
+/* Online Java Compiler and Editor */
 import java.util.*;
 
-public class FindLargestElement{
-
-    //Approach 1: Brute Force
-    static int findLargestElementBF(int[] arr){
-
-        // Check if the array is empty
-        if(arr.length == 0)
-            return Integer.MIN_VALUE;//return a default value
+public class FindLargestElement {
+    public static void main(String[] args) {
         
+        // Brute Force approach using sorting
+        System.out.println("Brute Force approach: ");
+        
+        // Input array
+        int[] arr = {2, 3, 4, 5, 6, 2};
+        
+        // Sort the array in ascending order
         Arrays.sort(arr);
-
-      // Return the largest element which is the last element after sorting
-        return arr[arr.length - 1];
-    }//findLargestElementBF
-
-    //Optimal Approach 2: - Recursive Approach(Using a max variable)
-    static int findLargestElementOptimal(int[] arr){
         
-        // Initialize max to the first element of the array
+        // The last element will be the largest
+        System.out.println("Largest: " + arr[arr.length - 1]);
+        
+        // Optimal approach using a max variable
+        System.out.println("Optimal approach: ");
+        
+        // Initialize max with the first element
         int max = arr[0];
-
-        // Iterate through the array
-        for(int i = 0; i < arr.length; i++){
-            // If the current element is greater than max, update max
-            if(arr[i] > max){
+        
+        // Traverse the array to find the maximum
+        for (int i = 0; i < arr.length; i++) {
+            // If current element is greater than max, update max
+            if (arr[i] > max) {
                 max = arr[i];
             }
         }
-
-        // Return the largest element found
-        return max;
-    }//findLargestElementOptimal
-
-    public static void main(String[] args){
-        int arr[] =  {2,5,1,3,0};
         
-        //Before the largest element in the array
-        System.out.println("Before the largest element in the array: ");
-        for(int i = 0; i < arr.length; i++){
-            System.out.print(arr[i]+ " ");
-        }
-        System.out.println();
-
-        System.out.println("The Largest element in the array is(Brute Force): " + findLargestElementBF(arr));
-    
-        System.out.println("The Largest element in the array is(Optimal): " + findLargestElementOptimal(arr));
+        // Print the largest element
+        System.out.println("Largest: " + max);
     }
 }
 
 /*
 Output:
-
-Before the largest element in the array: 
-2 5 1 3 0
-The Largest element in the array is(Brute Force): 5
-The Largest element in the array is(Optimal): 5 
+Brute Force approach: 
+Largest: 6
+Optimal approach: 
+Largest : 6
 */
