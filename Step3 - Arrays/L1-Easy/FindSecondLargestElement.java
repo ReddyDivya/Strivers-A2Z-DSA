@@ -21,113 +21,87 @@ import java.util.*;
 
 public class FindSecondLargestElement{
 
-    //Approach 1: Brute Force
-    static private void findSecondLargestElementBF(int[] arr, int n){
-        if (n < 2) {
-            System.out.println("There is no second largest element in the array(Brute Force).");
-            return;
-        }
+    public static void main(String[] args) {
+        // Initialize the array
+        int[] arr = {1, 2, 4, 6, 7, 7, 5};
 
-        Arrays.sort(arr);
-        int second_largest = arr[n-2];
+        // Brute force approach using sorting
+        fnBruteApproach(arr, arr.length);
 
-        // Print the results for the second smallest element.
-        System.out.println("The second largest element in the array is(Brute Force): " + second_largest);
-    }//findSecondLargestElementBF
+        // Better approach using two passes (find max and then second max)
+        fnBetterApproach(arr, arr.length);
 
-    //Approach 2: Better
-    static private void findSecondLargestElementBetter(int[] arr, int n){
-        
-        int large = Integer.MIN_VALUE;
-        int second_large = Integer.MIN_VALUE;
+        // Optimal approach using single pass
+        fnOptimalApproach(arr, arr.length);
+    }
 
-        if (n < 2) {
-            System.out.println("There is no second largest element in the array(Better).");
-            return;
-        }
+    // Brute force: sort array, then find the first smaller element than the largest
+    static private void fnBruteApproach(int[] arr, int n) {
+        System.out.println("Brute force approach: ");
+        Arrays.sort(arr); // Sort the array
+        int largest = arr[n - 1]; // Last element is the largest
+        int secondLargest = -1;
 
-        int i;
-        // Iterate through the array to find the smallest element
-        for(i = 0; i < n; i++){
-            // Update 'large' to the maximum value between 'largest' and the current element 'arr[i]'
-            large = Math.max(large, arr[i]);
-        }
-
-        for(i=0; i<n; i++){
-            if(arr[i] > second_large && arr[i] != large){
-                second_large = arr[i];
+        // Traverse from second last to start to find second largest
+        for (int i = n - 2; i >= 0; i--) {
+            if (arr[i] < largest) {
+                secondLargest = arr[i];
+                break;
             }
         }
 
-        // Print the results for the second smallest element.
-        System.out.println("The second largest element in the array is(Better): " + second_large);
-    }//findSecondLargestElementBetter
+        System.out.println("Second Largest Element is " + secondLargest);
+    }
 
-    // This method finds the second largest element in an integer array.
-    static private void findSecondLargestElementOptimal(int[] arr, int n){
-        // If the array size is less than 2, return -1 indicating no second largest element.
-        if(n < 2)
-        {
-            System.out.println("There is no second largest element in the array(Optimal).");
-            return;
+    // Better approach: first find largest, then find the largest value less than it
+    static private void fnBetterApproach(int[] arr, int n) {
+        System.out.println("Better approach: ");
+        int largest = arr[0];
+        int secondLargest = -1;
+
+        // First pass: find the largest element
+        for (int i = 1; i < n; i++) {
+            if (arr[i] > largest)
+                largest = arr[i];
         }
-        
-        // Initialize the largest and second largest values to the minimum possible integer value.
-        int large = Integer.MIN_VALUE;
-        int second_large = Integer.MIN_VALUE;
 
-        // Iterate through the array to find the largest and second largest elements.
-        for(int i = 0; i < n; i++){
-            // If the current element is greater than the largest element found so far,
-            // update the second largest and largest elements.
-            if(arr[i] > large){
-                second_large = large;
-                large = arr[i];
+        // Second pass: find the second largest element
+        for (int i = 0; i < n; i++) {
+            if (arr[i] != largest && arr[i] > secondLargest)
+                secondLargest = arr[i];
+        }
+
+        System.out.println("Second Largest Element is " + secondLargest);
+    }
+
+    // Optimal approach: find largest and second largest in one loop
+    static private void fnOptimalApproach(int[] arr, int n) {
+        System.out.println("Optimal approach: ");
+        int largest = arr[0];
+        int secondLargest = -1;
+
+        // One loop to find both largest and second largest
+        for (int i = 1; i < n; i++) {
+            if (arr[i] > largest) {
+                secondLargest = largest;
+                largest = arr[i];
+            } else if (arr[i] != largest && arr[i] > secondLargest) {
+                secondLargest = arr[i];
             }
-            // If the current element is greater than the second largest but not equal to the largest,
-            // update the second largest element.
-            else if(arr[i] > second_large && arr[i] != large){
-                second_large = arr[i];
-            }
         }
 
-        // Check if second_large was updated from its initial value.
-        if(second_large == Integer.MIN_VALUE){
-            return; // No second largest element found.
-        }
-
-        // Print the results for the second largest element.
-        if(second_large == -1){
-            System.out.println("There is no second largest element in the array.");
-        } else {
-            System.out.println("The second largest element in the array is(Optimal): " + second_large);
-        }
-    }//findSecondLargestElementOptimal
-
-    public static void main(String[] args){
-        int[] arr = {1, 2, 4, 6, 7, 5};
-    	int n = arr.length;
-
-        System.out.println("Given Array: ");
-        for(int i=0; i<n; i++){
-            System.out.print(arr[i]+" ");
-        }
-        System.out.println();
-
-        // Find the second largest element in the array.
-        findSecondLargestElementBF(arr, arr.length);
-        findSecondLargestElementBetter(arr, arr.length);
-        findSecondLargestElementOptimal(arr, arr.length);
-    }//main
+        System.out.println("Second Largest Element is " + secondLargest);
+    }
 }
 
 
 /*
 Output:
 
-Given Array: 
-1 2 4 6 7 5
-The second largest element in the array is(Brute Force): 6
-The second largest element in the array is(Better): 6    
-The second largest element in the array is(Optimal): 6
+Brute force approach: 
+Second Largest Element is 6
+Better approach: 
+Second Largest Element is 6
+Better approach: 
+Second Largest Element is 6
 */
