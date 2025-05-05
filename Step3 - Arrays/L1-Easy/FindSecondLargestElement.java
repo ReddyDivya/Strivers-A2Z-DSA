@@ -22,8 +22,18 @@ import java.util.*;
 public class FindSecondLargestElement{
 
     public static void main(String[] args) {
-        // Initialize the array
-        int[] arr = {1, 2, 4, 6, 7, 7, 5};
+        Scanner scn = new Scanner(System.in); // Creating Scanner object to take input
+
+        System.out.println("Enter the number of elements:");
+        int n = scn.nextInt(); // Reading the size of the array
+
+        System.out.println("Enter the elements:");
+        int[] arr = new int[n]; // Creating array of size n
+
+        // Reading n elements from the user
+        for (int i = 0; i < n; i++) {
+            arr[i] = scn.nextInt();
+        }
 
         // Brute force approach using sorting
         fnBruteApproach(arr, arr.length);

@@ -16,21 +16,35 @@ import java.util.*;
 
 public class FindLargestElement {
     public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in); // Creating Scanner object to take input
+
+        System.out.println("Enter the number of elements:");
+        int n = scn.nextInt(); // Reading the size of the array
+
+        System.out.println("Enter the elements:");
+        int[] arr = new int[n]; // Creating array of size n
+
+        // Reading n elements from the user
+        for (int i = 0; i < n; i++) {
+            arr[i] = scn.nextInt();
+        }
         
+        fnLargestElementBrute(arr, arr.length);
+        fnLargestElementOptimal(arr, arr.length);
+        
+    }
+    static private void fnLargestElementBrute(int[] arr, int n) {
         // Brute Force approach using sorting
         System.out.println("Brute Force approach: ");
-        
-        // Input array
-        int[] arr = {2, 3, 4, 5, 6, 2};
         
         // Sort the array in ascending order
         Arrays.sort(arr);
         
         // The last element will be the largest
-        System.out.println("Largest: " + arr[arr.length - 1]);
+        System.out.println("Largest: " + arr[n - 1]);
+    }//fnLargestElementBrute
 
-        /* -------------------------------------------------------------------- */
-        
+    static private void fnLargestElementOptimal(int[] arr, int n) {
         // Optimal approach using a max variable
         System.out.println("Optimal approach: ");
         
@@ -38,7 +52,7 @@ public class FindLargestElement {
         int max = arr[0];
         
         // Traverse the array to find the maximum
-        for (int i = 0; i < arr.length; i++) {
+        for (int i = 0; i < n; i++) {
             // If current element is greater than max, update max
             if (arr[i] > max) {
                 max = arr[i];
@@ -47,7 +61,7 @@ public class FindLargestElement {
         
         // Print the largest element
         System.out.println("Largest: " + max);
-    }
+    }//fnLargestElementOptimal
 }
 
 /*
