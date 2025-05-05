@@ -15,43 +15,53 @@ Step2: If the whole array is traversed successfully or the size of the given arr
 import java.util.*;
 
 public class IsArryaSorted{
-    //# Approach 1: Brute Force
-    static boolean isSortedBF(int[] arr, int n){
-        for(int i=0; i<n; i++){
-            for(int j=i+1; j<n; j++){
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in); // Creating Scanner object to take input
+
+        System.out.println("Enter the number of elements:");
+        int n = scn.nextInt(); // Reading the size of the array
+
+        System.out.println("Enter the elements:");
+        int[] arr = new int[n]; // Creating array of size n
+
+        // Reading n elements from the user
+        for (int i = 0; i < n; i++) {
+            arr[i] = scn.nextInt();
+        }
+
+        // Calling the function to check if array is sorted and printing result
+        System.out.println("Checking if array is sorted? : " + isSortedBruteForce(arr, n));
+
+        // Calling the function to check if array is sorted and printing result
+        System.out.println("Checking if array is sorted? : " + isSortedOptimal(arr, n));
+
+        scn.close(); // Closing Scanner
+    }
+
+    // Optimal Approach:Function to check if the array is sorted in non-decreasing order
+    static boolean isSortedBruteForce(int[] arr, int n) {
+        System.out.println("Brute Force Approach:");
+        for (int i = 1; i < n; i++) {
+            for(int j=i+1; j < n; j++){
                 if(arr[j] < arr[i]){
                     return false;
                 }
             }
         }
+        return true; // If loop completes, array is sorted
+    } // isSortedBruteForce
 
-        return true;
-    }//isSortedBF
-
-    //Approach 2: Optimal
-    static boolean isSortedOptimal(int[] arr, int n){
-        for(int i=1; i<n; i++){
-            if(arr[i] < arr[i-1])
+    // Optimal Approach:Function to check if the array is sorted in non-decreasing order
+    static boolean isSortedOptimal(int[] arr, int n) {
+        System.out.println("Optimal Approach:");
+        for (int i = 1; i < n; i++) {
+            // If current element is smaller than previous, array is not sorted
+            if (arr[i] < arr[i - 1]) {
                 return false;
+            }
         }
-
-        return true;
-    }//isSorted
-
-    public static void main(String[] args){
-        int arr[] = {1, 2, 3, 4, 5, 4, 3};
-        int n = 7;
-
-        // Prompt the user to enter the elements of the array.
-        System.out.println("Given array: ");
-        for(int i = 0; i < n; i++){
-           System.out.print(arr[i]+" ");
-        }
-        System.out.println();
-
-       System.out.println("Is array sorted(Brute Force) : " + isSortedBF(arr, n));
-       System.out.println("Is array sorted(Optimal) : " + isSortedOptimal(arr, n));
-    }//main
+        return true; // If loop completes, array is sorted
+    } // isSortedOptimal
 }
 
 /*
