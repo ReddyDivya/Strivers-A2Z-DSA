@@ -77,10 +77,14 @@ public class RemoveDuplicates {
 /*
 Output:
 
-Given Array: 
-1 1 2 2 2 3 3
-The array after removing duplicate elements is (Brute Force):
-1 2 3
-The array after removing the duplicate elements (Optimal):   
-1 2 3
+Enter the number of elements:
+5
+Enter the elements:
+44
+3
+2
+11
+3
+Remove Duplicates (Brute): 4
+Remove Duplicates (Optimal): 4
 */
