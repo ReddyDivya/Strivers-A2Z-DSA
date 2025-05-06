@@ -22,78 +22,55 @@ import java.util.*;
 
 public class RemoveDuplicates {
 
-    // Approach 1: Brute Force
-    static void removeDuplicatesBF(int[] arr) {
-        // Create a HashSet to store unique elements
-        HashSet<Integer> set = new HashSet<>();
-        
-        // Create a list to store unique elements in order
-        List<Integer> uniqueList = new ArrayList<>();
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in); // Create Scanner object to read input
 
-        // Add elements to the set to remove duplicates
-        for (int i = 0; i < arr.length; i++) {
+        System.out.println("Enter the number of elements:");
+        int n = scn.nextInt(); // Read the size of the array
+
+        System.out.println("Enter the elements:");
+        int[] arr = new int[n]; // Declare an array of size n
+
+        // Take n elements as input from the user
+        for (int i = 0; i < n; i++) {
+            arr[i] = scn.nextInt();
+        }
+
+        // Brute Force: works without sorting
+        System.out.println("Remove Duplicates (Brute): " + fnBruteApproach(arr, arr.length));
+        
+        // Sort array before calling the optimal approach
+        Arrays.sort(arr); 
+        System.out.println("Remove Duplicates (Optimal): " + fnOptimalApproach(arr, arr.length));
+    }
+
+    // Brute Force: Uses HashSet to remove duplicates
+    static int fnBruteApproach(int[] arr, int n) {
+        HashSet<Integer> set = new HashSet<>(); // HashSet stores only unique elements
+
+        // Add each element to the set
+        for (int i = 0; i < n; i++) {
             set.add(arr[i]);
         }
 
-        // Add unique elements from the set to the list in order
-        for (int x : set) {
-            uniqueList.add(x);
-        }
+        return set.size(); // Size of set is the number of unique elements
+    }
 
-        // Copy unique elements from the list back to the original array
-        for (int i = 0; i < uniqueList.size(); i++) {
-            arr[i] = uniqueList.get(i);
-        }
+    // Optimal Approach: Works on sorted arrays only
+    static int fnOptimalApproach(int[] arr, int n) {
+        if (n == 0) return 0; // Handle empty array
 
-        System.out.println("The array after removing duplicate elements is (Brute Force):");
-        for (int i = 0; i < uniqueList.size(); i++) {
-            System.out.print(arr[i] + " ");
-        }
-    }// removeDuplicatesBF
+        int i = 0; // Pointer to track unique elements
 
-
-    // Approach 2: Optimal
-    static void removeDuplicatesOptimal(int[] arr) {
-        // Sort the array to ensure duplicates are adjacent.
-        Arrays.sort(arr);
-
-        // Check if the array is empty or has only one element
-        if (arr.length == 0) return;
-
-        // Initialize a pointer i to keep track of the unique elements' position.
-        int i = 0;
-
-        // Iterate through the array starting from the second element.
-        for (int j = 1; j < arr.length; j++) {
-            // If the current element is different from the last unique element,
-            // it means it's a new unique element.
+        // Compare each element with the previous unique one
+        for (int j = 1; j < n; j++) {
             if (arr[i] != arr[j]) {
-                i++; // Move the pointer i to the next position.
-                // Update the next position with the current element.
+                i++;
                 arr[i] = arr[j];
             }
         }
 
-        // Print the array after removing duplicate elements.
-        System.out.println("\nThe array after removing the duplicate elements (Optimal): ");
-        for (int k = 0; k <= i; k++) {
-            System.out.print(arr[k] + " ");
-        }
-
-        System.out.println();
-    }//removeDuplicatesOptimal
-
-    public static void main(String[] args) {
-        int arr[] = {1, 1, 2, 2, 2, 3, 3};
-
-        System.out.println("Given Array: ");
-        for (int i = 0; i < arr.length; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
-
-        removeDuplicatesBF(arr);// brute force
-        removeDuplicatesOptimal(arr);// optimal
+        return i + 1; // Number of unique elements
     }
 }
 
