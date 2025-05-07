@@ -29,12 +29,44 @@ Step4: Print the min variable.
 import java.util.*;
 
 public class FindSmallestElement{
+    public static void main(String[] args){
+        Scanner scn = new Scanner(System.in); // Create Scanner object to read input
+        int n = 0;
+        int[] arr = null;
+
+        try {
+            System.out.println("Enter the number of elements:");
+            n = scn.nextInt(); // Read the size of the array
+
+            // If the array has fewer than 2 elements, we cannot find a second smallest
+            if (n < 2) {
+                System.out.println("There is no second smallest element in the array.");
+                return;
+            }
+
+            // Initialize array and read user input
+            arr = new int[n];
+            System.out.println("Enter the elements:");
+            for (int i = 0; i < n; i++) {
+                arr[i] = scn.nextInt(); // Read each element into the array
+            }
+
+        } catch (InputMismatchException e) {
+            // Handle non-integer input
+            System.out.println("Error: Invalid input. Please enter integers only.");
+            return; // Exit program after catching input error
+        } finally {
+            scn.close(); // Always close Scanner to avoid memory leaks
+        }
+
+        // Call the method to find the smallest element and print the result
+        System.out.println("Brute Force: " + findSmallestElementBF(arr));
+
+        // Call the method to find the smallest element and print the result
+        System.out.println("Optimal: " + findSmallestElementOptimal(arr));
+    }//main
+
     static int findSmallestElementBF(int[] arr){
-        
-        // Check if the array is empty
-        // if(arr.length == 0)
-        //     return Integer.MIN_VALUE;//return a default value
-        
         Arrays.sort(arr);
 
         // Return the smallest element which is the fist element after sorting
@@ -55,22 +87,6 @@ public class FindSmallestElement{
         // Return the smallest element found
         return min;
     }//findSmallestElementOptimal
-
-    public static void main(String[] args){
-        int arr[] =  {32,25,11,13};
-
-        System.out.println("Given Array: ");
-        for(int i=0; i<arr.length; i++){
-            System.out.print(arr[i] +" ");
-        }
-        System.out.println();
-
-        // Call the method to find the smallest element and print the result
-        System.out.println("The smallest element in the array is(Brute Force): " + findSmallestElementBF(arr));
-
-        // Call the method to find the smallest element and print the result
-        System.out.println("The smallest element in the array is(Optimal): " + findSmallestElementOptimal(arr));
-    }
 }
 
 /*

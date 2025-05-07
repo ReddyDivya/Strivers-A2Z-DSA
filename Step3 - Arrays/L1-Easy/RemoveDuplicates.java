@@ -24,16 +24,32 @@ public class RemoveDuplicates {
 
     public static void main(String[] args) {
         Scanner scn = new Scanner(System.in); // Create Scanner object to read input
+        int n = 0;
+        int[] arr = null;
 
-        System.out.println("Enter the number of elements:");
-        int n = scn.nextInt(); // Read the size of the array
+        try {
+            System.out.println("Enter the number of elements:");
+            n = scn.nextInt(); // Read the size of the array
 
-        System.out.println("Enter the elements:");
-        int[] arr = new int[n]; // Declare an array of size n
+            // If the array has fewer than 2 elements, we cannot find a second smallest
+            if (n < 2) {
+                System.out.println("There is no second smallest element in the array.");
+                return;
+            }
 
-        // Take n elements as input from the user
-        for (int i = 0; i < n; i++) {
-            arr[i] = scn.nextInt();
+            // Initialize array and read user input
+            arr = new int[n];
+            System.out.println("Enter the elements:");
+            for (int i = 0; i < n; i++) {
+                arr[i] = scn.nextInt(); // Read each element into the array
+            }
+
+        } catch (InputMismatchException e) {
+            // Handle non-integer input
+            System.out.println("Error: Invalid input. Please enter integers only.");
+            return; // Exit program after catching input error
+        } finally {
+            scn.close(); // Always close Scanner to avoid memory leaks
         }
 
         // Brute Force: works without sorting
