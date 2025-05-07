@@ -18,111 +18,137 @@ Step3: Once we traverse the entire array, we would find the second smallest elem
 */
 import java.util.*;
 
-public class FindSecondSmallestElement{
-    
-    // Approach 1: Brute Force Approach
-    static private void findSecondSmallestElementBF(int[] arr, int n){
-        if (n < 2) {
-            System.out.println("There is no second smallest element in the array(Brute Force).");
-            return;
-        }
-        
-        Arrays.sort(arr);
-        int second_small = arr[1]; // second smallest
+public class FindSecondSmallestElement {
 
-        // Print the results for the second smallest element.
-        System.out.println("The second smallest element in the array is(Brute Force): " + second_small);
-    }//findSecondSmallestElementBF
+    public static void main(String[] args) {
+        Scanner scn = new Scanner(System.in); // Create Scanner object to read input
+        int n = 0;
+        int[] arr = null;
 
-    // Approach 2: Better Approach
-    static private void findSecondSmallestElementBetter(int[] arr, int n){
-        // Initialize variables to store the smallest and second smallest elements
-        int small = Integer.MAX_VALUE;
-        int second_small = Integer.MAX_VALUE;
+        try {
+            System.out.println("Enter the number of elements:");
+            n = scn.nextInt(); // Read the size of the array
 
-        // Check if the array size is less than 2
-        if (n < 2) {
-            // If so, print a message indicating that there is no second smallest element and return
-            System.out.println("There is no second smallest element in the array(Better).");
-            return;
-        }
+            // If the array has fewer than 2 elements, we cannot find a second smallest
+            if (n < 2) {
+                System.out.println("There is no second smallest element in the array.");
+                return;
+            }
 
-        int i;
-        // Iterate through the array to find the smallest element
-        for(i = 0; i < n; i++){
-            // Update 'small' to the minimum value between 'small' and the current element 'arr[i]'
-            small = Math.min(small, arr[i]);
+            // Initialize array and read user input
+            arr = new int[n];
+            System.out.println("Enter the elements:");
+            for (int i = 0; i < n; i++) {
+                arr[i] = scn.nextInt(); // Read each element into the array
+            }
+
+        } catch (InputMismatchException e) {
+            // Handle non-integer input
+            System.out.println("Error: Invalid input. Please enter integers only.");
+            return; // Exit program after catching input error
+        } finally {
+            scn.close(); // Always close Scanner to avoid memory leaks
         }
 
-        // Iterate through the array again to find the second smallest element
-        for(i = 0; i < n; i++)
-        {
-            // If the current element is smaller than 'second_small' and not equal to 'small'
-            if (arr[i] < second_small && arr[i] != small)
-            {
-                // Update 'second_small' to the current element
-                second_small = arr[i];
+        // Call all three approaches
+        fnBruteForce(arr, n);
+        fnBetter(arr, n);
+        fnOptimal(arr, n);
+    }
+
+    // Approach 1: Brute Force
+    // Sort the array and pick the first element that is greater than the smallest
+    // Time Complexity: O(n log n)
+    // Space Complexity: O(n) due to array copy
+    static void fnBruteForce(int[] arr, int n) {
+        int[] sorted = Arrays.copyOf(arr, n); // Create a copy to avoid modifying the original array
+        Arrays.sort(sorted); // Sort the copied array
+
+        int smallest = sorted[0]; // Get the smallest element
+
+        // Traverse the sorted array to find the first element greater than the smallest
+        for (int i = 1; i < n; i++) {
+            if (sorted[i] != smallest) {
+                System.out.println("Brute Force: " + sorted[i]);
+                return;
             }
         }
 
-        // Print the results for the second smallest element.
-        System.out.println("The second smallest element in the array is(Better): " + second_small);
-    }//findSecondSmallestElementBetter
+        // All elements are the same
+        System.out.println("Brute Force: No second smallest element.");
+    }
 
-    // Approach 3: Optimal Approach
-    static private void findSecondSmallestElementOptimal(int[] arr, int n){
-        // If the array size is less than 2, print a message indicating no second smallest element.
-        if(n < 2) {
-            System.out.println("There is no second smallest element in the array(Optimal).");
-            return;
+    // Approach 2: Better (Two-pass linear search)
+    // First find the smallest, then find the smallest element greater than it
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
+    static void fnBetter(int[] arr, int n) {
+        int smallest = Integer.MAX_VALUE;
+        int secondSmallest = Integer.MAX_VALUE;
+
+        // Pass 1: Find the smallest element
+        for (int i = 0; i < n; i++) {
+            if (arr[i] < smallest) {
+                smallest = arr[i];
+            }
         }
 
-        // Initialize the smallest and second smallest values to the maximum possible integer value.
-        int small = Integer.MAX_VALUE;
-        int second_small = Integer.MAX_VALUE;
-
-        // Iterate through the array to find the smallest and second smallest elements.
-        for(int i = 0; i < n; i++){
-            // If the current element is less than the smallest element found so far,
-            // update the second smallest and smallest elements.
-            if(arr[i] < small){
-                second_small = small;
-                small = arr[i];
+        // Pass 2: Find the smallest element greater than the smallest
+        for (int i = 0; i < n; i++) {
+            if (arr[i] < secondSmallest && arr[i] != smallest) {
+                secondSmallest = arr[i];
             }
-            // If the current element is less than the second smallest but not equal to the smallest,
-            // update the second smallest element.
-            else if(arr[i] < second_small && arr[i] != small){
-                second_small = arr[i];
-            }
-        }//for
-
-        // Print the results for the second smallest element.
-        System.out.println("The second smallest element in the array is(Optimal): " + second_small);
-    }//findSecondSmallestElementOptimal
-
-    public static void main(String[] args){
-        int[] arr = {1, 2, 4, 6, 7, 5};
-    	int n = arr.length;
-
-        System.out.println("Given Array: ");
-        for(int i=0; i<n; i++){
-            System.out.print(arr[i]+" ");
         }
-        System.out.println();
 
-        // Find the second smallest element in the array.
-        findSecondSmallestElementBF(arr, arr.length);
-        findSecondSmallestElementBetter(arr, arr.length);
-        findSecondSmallestElementOptimal(arr, arr.length);
-    }//main
+        // If second smallest wasn't updated, it means no valid second smallest
+        if (secondSmallest == Integer.MAX_VALUE) {
+            System.out.println("Better: No second smallest element.");
+        } else {
+            System.out.println("Better: " + secondSmallest);
+        }
+    }
+
+    // Approach 3: Optimal (Single pass)
+    // Track both smallest and second smallest in a single loop
+    // Time Complexity: O(n)
+    // Space Complexity: O(1)
+    static void fnOptimal(int[] arr, int n) {
+        int smallest = Integer.MAX_VALUE;
+        int secondSmallest = Integer.MAX_VALUE;
+
+        // Traverse array only once and update smallest and second smallest accordingly
+        for (int i = 0; i < n; i++) {
+            if (arr[i] < smallest) {
+                // New smallest found, update both smallest and second smallest
+                secondSmallest = smallest;
+                smallest = arr[i];
+            } else if (arr[i] < secondSmallest && arr[i] != smallest) {
+                // Update second smallest if current is greater than smallest and smaller than second smallest
+                secondSmallest = arr[i];
+            }
+        }
+
+        // Check if a valid second smallest element was found
+        if (secondSmallest == Integer.MAX_VALUE) {
+            System.out.println("Optimal: No second smallest element.");
+        } else {
+            System.out.println("Optimal: " + secondSmallest);
+        }
+    }
 }
 
 /*
 Output:
-
-Given Array: 
-1 2 4 6 7 5 
-The second smallest element in the array is(Brute Force): 2
-The second smallest element in the array is(Better): 2
-The second smallest element in the array is(Optimal): 2
+Enter the number of elements:
+6
+Enter the elements:
+55
+44
+33
+21
+1
+445
+Brute Force: 21
+Better: 21
+Optimal: 21
 */
