@@ -85,3 +85,19 @@ public class LeftRotateByOnePlace {
         System.out.println();
     }
 }
+
+/*
+Output:
+
+Enter the number of elements:
+5
+Enter the elements:
+44
+33
+22
+21
+1
+Original array: 44 33 22 21 1 
+After Left Rotate (Brute Force): 33 22 21 1 44
+After Left Rotate (Optimal): 33 22 21 1 44
+*/
