@@ -12,78 +12,76 @@ Step3: Then, store the value present in the next index to the current index like
 Step4: To prevent its segmentation fault we will iterate it till n-1.
 Step5: At last, put the value of variable x in the last index of the array.
 */
+
+import java.util.InputMismatchException;
+import java.util.Scanner;
+import java.util.Arrays;
+
 public class LeftRotateByOnePlace {
 
-    // Approach 1: Brute Force
-    static private void leftRotateByOnePlaceBF(int[] arr, int n) {
-        // Create a temporary array to store the rotated elements
-        int[] temp = new int[n];
-
-        // Copy elements from the original array to the temporary array, shifting them left by one position
-        for (int i = 1; i < n; i++) {
-            temp[i - 1] = arr[i];
-        }
-
-        // Place the first element of the original array at the last position of the temporary array
-        temp[n - 1] = arr[0];
-
-        // Print the array after left rotation
-        System.out.println("After Left rotate by one place(Brute Force): ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(temp[i] + " ");
-        }
-        System.out.println();
-    }//leftRotateByOnePlaceBF
-
-    //Approach 2: Optimal approach
-   static private void leftRotateByOnePlaceOptimal(int[] arr, int n) {
-        // Store the first element of the array in a temporary variable
-        int temp = arr[0];
-
-        // Shift all elements of the array one position to the left
-        for (int i = 0; i < n - 1; i++) {
-            arr[i] = arr[i + 1];
-        }
-
-        // Place the first element (stored in temp) at the end of the array
-        arr[n - 1] = temp;
-
-        // Print the array after left rotation
-        System.out.println("After Left rotate by one place (Optimal): ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
-    }//leftRotateByOnePlaceOptimal
-
-    // Main method to test the left rotation
     public static void main(String[] args) {
-        // Initialize the array and its size
-        int n = 5;
-        int arr[] = {1, 2, 3, 4, 5};
+        Scanner scn = new Scanner(System.in);
+        int n = 0;
+        int[] arr = null;
 
-        // Print the original array before rotation
-        System.out.println("Before Left rotate by one place: ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
+        try {
+            System.out.println("Enter the number of elements:");
+            n = scn.nextInt();
+
+            if (n < 2) {
+                System.out.println("There is no second smallest element in the array.");
+                return;
+            }
+
+            arr = new int[n];
+            System.out.println("Enter the elements:");
+            for (int i = 0; i < n; i++) {
+                arr[i] = scn.nextInt();
+            }
+
+        } catch (InputMismatchException e) {
+            System.out.println("Error: Invalid input. Please enter integers only.");
+            return;
+        } finally {
+            scn.close();
+        }
+
+        System.out.print("Original array: ");
+        printArray(arr);
+
+        // Make copies so both functions operate independently
+        int[] bruteArr = Arrays.copyOf(arr, n);
+        int[] optimalArr = Arrays.copyOf(arr, n);
+
+        fnBruteForce(bruteArr, n);
+        System.out.print("After Left Rotate (Brute Force): ");
+        printArray(bruteArr);
+
+        fnOptimal(optimalArr, n);
+        System.out.print("After Left Rotate (Optimal): ");
+        printArray(optimalArr);
+    }
+
+    static void fnBruteForce(int[] arr, int n) {
+        int temp = arr[0];
+        for (int i = 1; i < n; i++) {
+            arr[i - 1] = arr[i];
+        }
+        arr[n - 1] = temp;
+    }
+
+    static void fnOptimal(int[] arr, int n) {
+        int x = arr[0]; // Step1
+        for (int i = 0; i < n - 1; i++) { // Step2-4
+            arr[i] = arr[i + 1]; // Step3
+        }
+        arr[n - 1] = x; // Step5
+    }
+
+    static void printArray(int[] arr) {
+        for (int value : arr) {
+            System.out.print(value + " ");
         }
         System.out.println();
-
-        // Call the brute-force approach to left rotate the array by one place
-        leftRotateByOnePlaceBF(arr, n);
-
-        // Call the optimal approach to left rotate the array by one place
-        leftRotateByOnePlaceOptimal(arr, n);
-    }//main
+    }
 }
-
-
-/*
-Output:
-
-Before Left rotate by one place: 
-1 2 3 4 5 
-After Left rotate by one place(Brute Force): 
-2 3 4 5 1
-After Left rotate by one place (Optimal): 
-2 3 4 5 1
-*/
