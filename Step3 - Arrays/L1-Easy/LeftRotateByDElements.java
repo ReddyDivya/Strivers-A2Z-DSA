@@ -14,36 +14,24 @@ Step 3: Reverse the whole array.
 */
 public class LeftRotateByDElements{
     // Brute force approach for rotating the array to the left by k elements
-    public static void RotateToLeftBF(int[] arr, int n, int k){
-        // If the array is empty, return immediately
-        if(n == 0) return;
+    public static void RotateToLeftBF(int[] arr, int n, int d){
+        d = d % n; // Handle d > n
+        int[] temp = new int[d];
 
-        // Adjust k to be within the bounds of the array length
-        k = k % n;
-        if(k > n) return;
-
-        // Step-1: Copy the first k elements into the temp array
-        int[] temp = new int[k];
-        for(int i = 0; i < k; i++){
+        // Step 1: Copy first d elements to temp
+        for (int i = 0; i < d; i++) {
             temp[i] = arr[i];
         }
 
-        // Step-2: Shift n-k elements from the k-th position to the left
-        for(int i = 0; i < n - k; i++){
-            arr[i] = arr[i + k];
+        // Step 2: Shift remaining elements to the left
+        for (int i = d; i < n; i++) {
+            arr[i - d] = arr[i];
         }
 
-        // Step-3: Copy the elements from the temp array back to the main array
-        for (int i = n - k; i < n; i++) {
-           arr[i] = temp[i - n + k];
+        // Step 3: Place temp elements at the end
+        for (int i = 0; i < d; i++) {
+            arr[n - d + i] = temp[i];
         }
-
-        // Print the array after rotating to the left
-        System.out.println("After Rotating the elements to Left (Brute Force): ");
-        for (int i = 0; i < n; i++) {
-            System.out.print(arr[i] + " ");
-        }
-        System.out.println();
     }//RotateToLeftBF
 
     // Optimal approach for rotating the array to the left by k elements
